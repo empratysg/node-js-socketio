@@ -8,15 +8,16 @@ const ChatRoomModule = {
         )
     },
     registerUser: function (userName, id) {
-        if (!this.checkUser(userName, id)) {
-            users.push({
+        let u = this.checkUser(userName, id)
+        if (!u) {
+            u = {
                 socketId: id,
                 userName: userName,
                 status: userStatus.ONLINE
-            })
-        } else {
-            throw new Error('this user was taken!')
+            }
+            users.push(u)
         }
+        return u
     },
     listUsersOnline: function () {
         return users

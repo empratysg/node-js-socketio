@@ -1,6 +1,7 @@
 module.exports = {
     socketConstant: {
-        SOCKET_REGISTER_USER: 'register_message',
+        SOCKET_REGISTER_USER: 'register_user',
+        SOCKET_REGISTER_USER_RESPONSE: 'register_user_response',
         SOCKET_CHAT_MESSAGE: 'chat_message',
         SOCKET_USER_ONLINE_MESSAGE: 'user_online_message',
         SOCKET_ERROR_MESSAGE: 'error_message',

@@ -10,7 +10,7 @@ const messageModule = {
         return JSON.stringify({
                 from: from,
                 to: to,
-                msg: msg
+                data: msg
             }
         )
     }

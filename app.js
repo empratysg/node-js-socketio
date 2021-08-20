@@ -14,12 +14,11 @@ io.on(socketConstant.SOCKET_CONNECTION, (socket) => {
 
     socket.on(socketConstant.SOCKET_REGISTER_USER, userName => {
         socket.join(userName)
-        try {
-            chatModule.registerUser(userName, socket.id)
-            io.emit(socketConstant.SOCKET_USER_ONLINE_MESSAGE, messageModule.createMessageToAllFromSystem(chatModule.listUsersOnline()))
-        } catch (e) {
-            handleErrorMessage(e, socket)
-        }
+
+        let currUser = chatModule.registerUser(userName, socket.id)
+        io.emit(socketConstant.SOCKET_USER_ONLINE_MESSAGE, messageModule.createMessageToAllFromSystem(chatModule.listUsersOnline()))
+        socket.emit(socketConstant.SOCKET_REGISTER_USER_RESPONSE, messageModule.createMessageFromSystem(userName, currUser))
+
     })
     socket.on(socketConstant.SOCKET_DISCONNECTED, _ => {
         chatModule.userDisconnected(socket.id)
